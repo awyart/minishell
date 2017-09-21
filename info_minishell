@@ -1,0 +1,81 @@
+-ioctl
+
+http://manpagesfr.free.fr/man/man2/ioctl.2.html
+
+◦ execve
+	execve("/bin/ls", av, NULL);
+		-> NULL represente l'environnement
+ -> appel systeme FORK (man fork)
+
+"pid_t 		father;"
+
+father = fork();
+if (father > 0)
+{
+	wait();
+	PRINTF("I M YOUR FATHER");
+}
+if (father == 0)
+{
+	sleep(3);
+	execve("/bin/ls", av, NULL);
+}
+
+◦ malloc,free
+
+◦ access
+
+-> permet de checker les permissions 
+		access(path, R_OK)	read permission
+		access(path, W_OK) write permission
+		access(path, X_OK) execute/search
+		access(path, F_OK) existence test
+
+◦ open, close, read, write
+◦ opendir, readdir, closedir
+
+◦ getcwd, chdir
+ 	//get working directory pathanme
+ 	getcwd(buf, NULL);
+ 	chdir(path) -> wd = path now;
+
+◦ stat, lstat, fstat
+	stat/lstat -> obtient l'information sur un ficher
+	fstat -> obient l'information a partir d'un file descriptor;
+
+◦ fork, execve
+	cree un nouveau process: - uniqueID
+							 - different parent ID
+							 - copy of parents
+							 (see setrlimit)
+	       process ID           see getpid(2)
+           parent process ID    see getppid(2)
+           process group ID     see getpgrp(2)
+           access groups        see getgroups(2)
+           working directory    see chdir(2)
+           root directory       see chroot(2)
+           control terminal     see termios(4)
+           resource usages      see getrusage(2)
+           interval timers      see getitimer(2)
+           resource limits      see getrlimit(2)
+           file mode mask       see umask(2)
+           signal mask          see sigaction(2), sigsetmask(2)
+
+◦ wait, waitpid, wait3, wait4
+	no entiendo señor;
+◦ signal, kill
+	-> pour les processus qui merde
+	sigaction (2)
+◦ exit
+
+bonus :
+tcgetattr
+
+Minishell:
+
+on ca devoir creer un environnement permettant d'executer les commandes a l'ecran:
+
+Lors du lancement de ./minishell il faut creer un environnement avec une serie de variables globales( notament le path actuel, et le PATH)
+
+Une fois l'environnement crée, on peut lancer le processus ($>) et ainsi etre dans une boucle de processus:
+seule la commande Exit permet de quitter le minishell
