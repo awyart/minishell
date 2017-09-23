@@ -6,59 +6,59 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:43:31 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/21 16:13:28 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/23 23:42:37 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int 		ft_exist(char str, char *place)
+int 		ft_exist(char *str, char *place)
 {
-	dir*dir;
+	DIR				*dir;
+	struct dirent	*ret;
 
 	dir = opendir(place);
-	if (dir = NULL)
+	if (dir == NULL)
 		return (0);
-	while (ret = readdir(dir) > 0)
+	while ((ret = readdir(dir)) > 0)
 	{
 		if (ft_strcmp(ret->d_name, str) == 0)
 		{
 			return (1);
 		}
 	}
-	close(dir);
 	return (0);
 }
 
-char  		*ft_seekpath(char *path)
+char  		*ft_seekpath(char *str, char *path)
 {
 	char 	**place;
 	int		i;
 
+	i = 0;
 	place = ft_strsplit(path, ':');
 	while (place[i])
 	{
-		if (ft_exist(str[i], place[i]))
+		if (ft_exist(str, place[i]))
 			return (place[i]);
 		i++;
 	}
-	//ft_memdel(place);
 	return (NULL);
 }
 
-void 		ft_loadFunction(t_func *listf, char *path)
+void 		ft_loadFunction(t_func listf[QSIZE], char *path)
 {
 	int		i;
 
 	i = -1;
 	while (++i < QSIZE)
 	{
-		listf[i]->pos = g_env[i].pos;
-		ft_strcpy(listf[i]->cmd, g_env[i].cmd); 
-		if ((listf[i]->path = ft_seekpath(g_env[i].cmd, path)) == 0)
-			ft_printf(" \" %s \" didn't load", listf[i]->cmd);
+		if ((listf[i].path = ft_seekpath(listf[i].cmd, path)) == 0)
+			ft_printf(" \" %s \" didn't load\n", listf[i].cmd);
 		else
-			ft_printf(" \" %s \" loaded", listf[i]->cmd);
-		listf[i]->f =  g_env[i].f;
+		{
+			ft_printf(" \" %s \" loaded\n", listf[i].cmd);
+			ft_printf(" --> %s\n", listf[i].path);
+		}
 	}
 }

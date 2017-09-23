@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/21 15:29:49 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/23 23:40:58 by awyart           ###   ########.fr       */
+/*   Created: 2017/09/23 22:08:35 by awyart            #+#    #+#             */
+/*   Updated: 2017/09/23 23:36:43 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef STRUCT_H
+# define STRUCT_H
 
-void	ft_exit(char *path, char **argv, char **env)
+/*typedef struct		s_envir
 {
-	char *lgpath;
+	char			*user;
+	char			*logname;
+	char			*home;
+	char			*lang;
+	char			*path;
+	char 			*pwd;
+}					t_envir;*/
 
-	lgpath = ft_strjoin(path, "/exit");
-	//ft_printf("exit loaded\n");
-	//ft_printf("%s\n", lgpath);
-	execve(lgpath, argv, env);
-}
+typedef struct		s_func
+{
+	char			*cmd;
+	char			*path;
+	void			(*f)(char *path, char **argv, char **env);
+}					t_func;
+
+#endif

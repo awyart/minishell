@@ -6,18 +6,30 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/21 16:13:35 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/24 00:03:48 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void ft_process()
+t_func g_envi[] =
 {
-	pid_t 		father;
-	char 		*line;
-	char		**av;
+	{"ls", 0, &ft_ls},
+	{"cd", 0, &ft_cd},
+	{"echo", 0, &ft_echo},
+	{"env", 0, &ft_env},
+	{"setenv",0, &ft_setenv},
+	{"exit", 0, &ft_exit},
+	{"pwd", 0, &ft_pwd}
+	//man
+};
 
+void ft_process(t_func listf[QSIZE], char **env)
+{
+	pid_t		father;
+	char		*line;
+	char		**av;
+	int			i;
 
 	while (1)
 	{
@@ -26,28 +38,45 @@ void ft_process()
 		{
 			PRINTF("$>");
 			wait(0);
-			PRINTF("fin father\n");
 		}
 		if (father == 0)
 		{
 			get_next_line(1, &line);
 			av = ft_strsplit(line, ' ');
-			if (ft_strcmp(av[0], "ls") == 0)
-				execve("/bin/ls", av, ag);
-			else
+			i = -1;
+			while (++i < QSIZE)
 			{
-				PRINTF("%s\n", 0);
+				if (ft_strcmp(av[0], listf[i].cmd) == 0)
+				{
+					if (listf[i].path)
+						listf[i].f(listf[i].path, av, env);
+					else
+						ft_printf("Error\n");
+					break;
+				}
 			}
+			if (i == QSIZE)
+				ft_printf("awsh: command not found: %s\n", av[0]);
 		}
 	}
 }
 
-int main(void)
+int main(int ac, char **av, char **env)
 {
-	t_stack listf[QSIZE];
-	char	**env;
+	t_func listf[QSIZE];
+	int i;
 
-	env = ft_loadenv();
-	ft_loadFunction(&listf, PATH);
-	ft_process(env);
+
+	(void)av;
+	if (ac != 1)
+	{
+		ft_printf("pas d'argument pls");
+		return (0);
+	}
+	//env = ft_loadenv();
+	i = -1;
+	while (++i < QSIZE)
+		listf[i] = g_envi[i];
+	ft_loadFunction(listf, env[PATH]);
+	ft_process(listf, env);
 }

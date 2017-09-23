@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/21 15:29:49 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/23 23:40:58 by awyart           ###   ########.fr       */
+/*   Created: 2017/09/23 22:09:38 by awyart            #+#    #+#             */
+/*   Updated: 2017/09/23 23:32:12 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef PROTO_H
+# define PROTO_H
 
-void	ft_exit(char *path, char **argv, char **env)
-{
-	char *lgpath;
+void					ft_loadFunction(t_func listf[QSIZE], char *path);
+char					**ft_loadenv(void);
 
-	lgpath = ft_strjoin(path, "/exit");
-	//ft_printf("exit loaded\n");
-	//ft_printf("%s\n", lgpath);
-	execve(lgpath, argv, env);
-}
+#endif
