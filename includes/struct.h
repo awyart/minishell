@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 22:08:35 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/23 23:36:43 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/25 14:59:59 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct		s_func
 {
 	char			*cmd;
 	char			*path;
-	void			(*f)(char *path, char **argv, char **env);
+	void			(*f)(char **argv, char **env);
 }					t_func;
 
 #endif

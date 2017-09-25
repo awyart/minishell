@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:43:31 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/23 23:42:37 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/25 15:13:28 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,23 @@ char  		*ft_seekpath(char *str, char *path)
 	while (place[i])
 	{
 		if (ft_exist(str, place[i]))
-			return (place[i]);
+			return (ft_strjoin(place[i], "/"));
 		i++;
 	}
 	return (NULL);
 }
 
-void 		ft_loadFunction(t_func listf[QSIZE], char *path)
+char 		*ft_loadfunction(char **av, char *path)
 {
-	int		i;
+	char *exe;
 
-	i = -1;
-	while (++i < QSIZE)
+	if ((exe = ft_seekpath(av[0], path)) != 0)
 	{
-		if ((listf[i].path = ft_seekpath(listf[i].cmd, path)) == 0)
-			ft_printf(" \" %s \" didn't load\n", listf[i].cmd);
-		else
-		{
-			ft_printf(" \" %s \" loaded\n", listf[i].cmd);
-			ft_printf(" --> %s\n", listf[i].path);
-		}
+		return (exe);
+	}
+	else
+	{
+		ft_printf(" \" %s \" didn't load\n", av[0]);
+		return (NULL);
 	}
 }

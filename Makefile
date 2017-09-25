@@ -6,7 +6,7 @@
 #    By: awyart <awyart@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/20 13:23:55 by awyart            #+#    #+#              #
-#    Updated: 2017/09/23 19:01:30 by awyart           ###   ########.fr        #
+#    Updated: 2017/09/25 15:42:20 by awyart           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIB = $(LIBFT_DIR)/$(LIBFT_LIB) \
 	$(PRINTF_LIB)
 
 SRC1 = main.c \
+		applyf.c
 
 SRC2 = *.c \
 

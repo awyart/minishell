@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:40:01 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/23 23:44:02 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/25 15:46:40 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char **ft_loadenv(void)
 	{
 		if (!(aop[i] = ft_strdup(environ[i])))
 			return (0);
-		ft_printf("%d : %s: <%s>\n", i, environ[i], aop[i]);
+		//ft_printf("%d : %s: <%s>\n", i, environ[i], aop[i]);
 		i++;
 	}
 	//if (!(aop[0] = ft_strdup(environ[USER])))
@@ -41,6 +41,5 @@ char **ft_loadenv(void)
 	//	return(0);
 	//if (!(aop[5] = ft_strdup(environ[PWD])))
 	//	return(0);
-
 	return (aop);
 }

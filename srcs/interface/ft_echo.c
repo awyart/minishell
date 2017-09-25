@@ -6,19 +6,22 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:46 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/23 23:45:51 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/25 15:36:57 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_echo(char *path, char **argv, char **env)
+void	ft_echo(char **argv, char **env)
 {
-	char *lgpath;
+	int i;
 
-	lgpath = ft_strjoin(path, "/echo");
-	//ft_printf("echo loaded\n");
-	//ft_printf("%s\n", lgpath);
+	i = 1;
 	(void)env;
-	execve(lgpath, argv, NULL);
+	while (argv[i] != NULL)
+	{
+		ft_printf("%s ", argv[i]);
+		i++;
+	}
+	ft_printf("\n");
 }

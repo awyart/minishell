@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 13:37:22 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/23 23:48:39 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/25 15:02:50 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define BUFF_SIZE 1000
 #endif
 
-#define QSIZE 7
+# define QSIZE 5
 #define SIZEENV 6
 #define USER 16
 #define LOGNAME 18
