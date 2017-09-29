@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:40:01 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/25 15:46:40 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 15:23:47 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ char **ft_loadenv(void)
 	char		**aop;
 
 	i = 0;
-	if (!(aop = (char **)malloc((sizeof(char *) * (SIZEENV + 1)))))
+	if (!(aop = (char **)malloc((sizeof(char *) * (ft_strlend(g_environ) + 1)))))
 		return(NULL);
-	while (environ[i])
+	//printf("<%s>\n<%s>\n<%s>\n", environ[0], environ[1], environ[2]);
+	while (g_environ[i])
 	{
-		if (!(aop[i] = ft_strdup(environ[i])))
+		//ft_printf("%s\n", environ[i]);
+		if (!(aop[i] = ft_strdup(g_environ[i])))
 			return (0);
 		//ft_printf("%d : %s: <%s>\n", i, environ[i], aop[i]);
 		i++;

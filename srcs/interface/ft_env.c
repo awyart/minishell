@@ -6,21 +6,22 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:38 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/25 15:46:50 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 15:23:24 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_env(char **argv, char **env)
+int	ft_env(char **argv)
 {
 	int i;
 
 	i = 0;
-	(void)argv;
-	while (env[i])
+	while (g_environ[i] != NULL)
 	{
-		ft_printf("%s\n", env[i]);
+		printf("%s\n", g_environ[i]);
 		i++;
 	}
+	(void)argv;
+	return (1);
 }

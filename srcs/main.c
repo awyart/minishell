@@ -6,62 +6,86 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/25 15:46:55 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 15:24:01 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_process(t_func listf[QSIZE])
+void ft_init_env()
 {
-	pid_t		father;
-	char		*line;
-	char		**av;
-	char 		*tmp;
-	char 		**env;
+	int i;
+	int size;
 
-	while (1)
+	size = ft_strlend(environ);
+	i = -1;
+	g_environ = (char **)malloc(sizeof(char *) * (size + 1));
+	while (environ[++i])
 	{
-		father = fork();
-		if (father > 0)
-		{
-			
-			PRINTF("$>");
-			wait(0);
-		}
-		if (father == 0)
-		{
-			env = ft_loadenv();
-			get_next_line(1, &line);
-			av = ft_strsplit(line, ' ');
-			// on check en premier les build in
-			if (ft_apply_bi(av, listf, env) != 0)
-				;
-			//ft_printf(" --<>-- \nc'etait un build_in\n --<>-- \n");
-			//on check si la fonciton en path existe
-			else if	(ft_apply_fct0(av[0], av) != 0)
-				;
-			//ft_printf(" --<>-- \nLe chemin existait\n --<>-- \n");
-			//on check dans path s'il y a un alias avec la variable path
-			else if (((tmp = ft_loadfunction(av, env[PATH])) != NULL))
-			{
-				//ft_printf(" --<>-- \nLe chemin a ete trouve\n --<>-- \n");
-				ft_apply_fct(tmp, av);
-			}
-			//sinon on envoie un message d'erreur
-			else
-				ft_printf("awsh: command not found: %s\n", av[0]);
-		}
+		g_environ[i] = ft_strdup(environ[i]);
 	}
 }
 
-int main(int ac, char **av, char **envp)
+int ft_process(char **argv)
 {
-	t_func listf[QSIZE];
+	int ret;
+	int ipath;
+	char *tmp;
 
-	(void)ac;
-	(void)av;
-	(void)envp;
-	ft_check_bi(listf);
-	ft_process(listf);
+	ipath = ft_get_path();
+	if ((ret = ft_apply_bi(argv)) != 0)
+		return (ret);
+	if ((ret = ft_apply_fct0(argv[0], argv)) != 0)
+		return (ret);
+	if (((ipath >= 0 &&
+			(tmp = ft_loadfunction(argv, g_environ[ipath])) != NULL)))
+	{
+		ret = ft_apply_fct(tmp, argv);
+		return (ret);
+	}
+	ft_printf("awsh: command not found: %s\n", argv[0]);
+	return(0);
+
+	//afficer l'erreur
+}
+
+int ft_start(char **cmd)
+{
+	int i;
+	int ret;
+	char **argv;
+
+	i = -1;
+	ret = 0;
+	while (cmd[++i])
+	{
+		argv = ft_strsplit(cmd[i], ' '); //faire un split un peu plus intelligent ici;
+		ret = ft_process(argv);
+		//free des trucs
+		if (ret == -1)
+			break ;
+	}
+	return (ret);
+}
+
+int main(void)
+{
+	int ret;
+	char **cmd;
+	char *line;
+
+
+	ft_init_env();// initalise la variable globale environnement
+	while (42)
+	{
+		PRINTF("$>");
+		get_next_line(1, &line);
+		cmd = ft_strsplit(line, ';');
+		ret = ft_start(cmd);
+		//faut free des trucs la
+		if (ret == -1)
+			break ; 
+	}
+	//free des trucs la aussi
+	return (0);
 }

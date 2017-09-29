@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:43:31 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/25 15:13:28 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 14:53:56 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char 		*ft_loadfunction(char **av, char *path)
 	}
 	else
 	{
-		ft_printf(" \" %s \" didn't load\n", av[0]);
+		//ft_printf(" \" %s \" didn't load\n", av[0]);
 		return (NULL);
 	}
 }

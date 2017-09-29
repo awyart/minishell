@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 13:37:22 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/25 15:02:50 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 15:20:13 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <fcntl.h>
 #include <dirent.h>
 #include <sys/types.h>
+#include <signal.h>
 
 #define PRINTF ft_printf
 
@@ -28,7 +29,6 @@
 # define BUFF_SIZE 1000
 #endif
 
-# define QSIZE 5
 #define SIZEENV 6
 #define USER 16
 #define LOGNAME 18
@@ -39,9 +39,8 @@
 
 #include "struct.h"
 #include "proto.h"
-#include "interface.h"
 
-extern t_func g_envi[];
-
+extern char		**environ;
+char 			**g_environ;
 
 #endif

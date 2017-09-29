@@ -6,19 +6,33 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:09:09 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/25 15:27:51 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 15:36:57 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_cd(char **argv, char **env)
+static void ft_change_pwd()
 {
-	(void)env;
-	if (argv[1] == NULL)
-		chdir("~/");
-	else if (argv[2] != NULL)
+	int i;
+	char *str;
+	char buf[1024];
+
+	i = ft_get_pwd();
+	str = getcwd(buf, 1024);
+	g_environ[i] = ft_strjoinh("PWD", str);
+}
+
+int		ft_cd(char **argv)
+{
+	if (argv[2] != NULL)
 		ft_printf("Ne placer qu'un seul argument\n");
 	else
-		chdir(argv[1]);
+	{
+		if ((chdir(argv[1]) == 0))
+			ft_change_pwd();
+		else
+			ft_printf("cd: %s: no directory\n", argv[1]);
+	}
+	return (1);
 }

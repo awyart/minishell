@@ -6,15 +6,14 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:49 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/25 15:49:13 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 14:57:56 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_exit(char **argv, char **env)
+int	ft_exit(char **argv)
 {
-	(void)env;
 	ft_printf("%s loaded\n", argv[0]);
-	exit(0);
+	return (-1);
 }
