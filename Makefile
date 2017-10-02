@@ -6,13 +6,18 @@
 #    By: awyart <awyart@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/20 13:23:55 by awyart            #+#    #+#              #
-#    Updated: 2017/09/27 15:52:18 by awyart           ###   ########.fr        #
+#    Updated: 2017/10/02 20:08:30 by awyart           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 NAME = minishell
-FLAG = -Werror -Wall -Wextra 
+
+ifeq ($(DEBUG), yes)
+	FLAG = -g3
+else
+	FLAG = -Werror -Wall -Wextra 
+endif
 
 LIBFT_DIR = libft/
 LIBFT_LIB = libft.a
@@ -38,6 +43,7 @@ IPATH = includes
 all: $(NAME)
 
 $(NAME): $(SRC) 
+	@echo "$(FLAG)"
 	@make -C $(LIBFT_DIR)/
 	@echo "Compilation libft:\033[92m OK\033[0m"
 	@$(CC) $(SRC) $(FLAG) $(LIB) -I $(IPATH) -o $(NAME)

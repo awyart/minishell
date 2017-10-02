@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/23 22:08:35 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 16:04:06 by awyart           ###   ########.fr       */
+/*   Created: 2017/10/02 19:53:33 by awyart            #+#    #+#             */
+/*   Updated: 2017/10/02 20:04:03 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "header.h"
 
-/*typedef struct		s_envir
+void ft_freechar2(char **cmd)
 {
-	char			*user;
-	char			*logname;
-	char			*home;
-	char			*lang;
-	char			*path;
-	char 			*pwd;
-}					t_envir;*/
+	int i;
 
-typedef struct		s_func
-{
-	char			*cmd;
-	int				(*f)(char **argv);
-}					t_func;
-
-#endif
+	i = -1;
+	while (cmd[++i] != NULL)
+	{
+		ft_strdel(&(cmd[i]));
+	}
+	if (cmd)
+	{
+		free(cmd);
+		cmd = NULL;
+	}
+}

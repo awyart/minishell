@@ -6,11 +6,12 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 15:24:01 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 20:04:05 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
 
 void ft_init_env()
 {
@@ -20,7 +21,7 @@ void ft_init_env()
 	size = ft_strlend(environ);
 	i = -1;
 	g_environ = (char **)malloc(sizeof(char *) * (size + 1));
-	while (environ[++i])
+	while (environ[++i] != NULL)
 	{
 		g_environ[i] = ft_strdup(environ[i]);
 	}
@@ -41,12 +42,12 @@ int ft_process(char **argv)
 			(tmp = ft_loadfunction(argv, g_environ[ipath])) != NULL)))
 	{
 		ret = ft_apply_fct(tmp, argv);
+		ft_strdel(&tmp);
 		return (ret);
 	}
-	ft_printf("awsh: command not found: %s\n", argv[0]);
-	return(0);
+	PRINTF("awsh: command not found: %s\n", argv[0]);
+	return (0);
 
-	//afficer l'erreur
 }
 
 int ft_start(char **cmd)
@@ -61,7 +62,7 @@ int ft_start(char **cmd)
 	{
 		argv = ft_strsplit(cmd[i], ' '); //faire un split un peu plus intelligent ici;
 		ret = ft_process(argv);
-		//free des trucs
+		ft_freechar2(argv);
 		if (ret == -1)
 			break ;
 	}
@@ -74,18 +75,18 @@ int main(void)
 	char **cmd;
 	char *line;
 
-
-	ft_init_env();// initalise la variable globale environnement
+	ft_init_env();
 	while (42)
 	{
 		PRINTF("$>");
 		get_next_line(1, &line);
 		cmd = ft_strsplit(line, ';');
+		ft_strdel(&line);
 		ret = ft_start(cmd);
-		//faut free des trucs la
+		ft_freechar2(cmd);
 		if (ret == -1)
 			break ; 
 	}
-	//free des trucs la aussi
+	ft_freechar2(g_environ);
 	return (0);
 }

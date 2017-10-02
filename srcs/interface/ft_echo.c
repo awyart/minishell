@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:46 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 14:59:31 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 16:15:07 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_echo(char **argv)
 	i = 1;
 	while (argv[i] != NULL)
 	{
-		ft_printf("%s ", argv[i]);
+		PRINTF("%s ", argv[i]);
 		i++;
 	}
-	ft_printf("\n");
+	PRINTF("\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 15:38:13 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 19:57:38 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_setenv(char **argv)
 	int j;
 
 	if (!(argv[1]) || !(argv[2]))
-		ft_printf("Merci de preciser 2 parametres\n");
+		PRINTF("Merci de preciser 2 parametres\n");
 	else
 	{
 		i = -1;
@@ -28,20 +28,23 @@ int	ft_setenv(char **argv)
 			name = ft_strsplit(g_environ[i], '=');
 			if (ft_strcmp(name[0], argv[1]) == 0)
 			{
+				ft_strdel(&(g_environ[i]));
 				g_environ[i] = ft_strjoinh(argv[1], argv[2]);
 				return (1);
 			}
+			ft_freechar2(name);
 		}
 		j = -1;
 		name = (char**)malloc(sizeof(char*) * (i));
 		while (g_environ[++j])
-			name[j] = g_environ[j];
+			name[j] = ft_strdup(g_environ[j]);
+		ft_freechar2(g_environ);
 		g_environ = (char**)malloc(sizeof(char*) * (i + 1));
-		g_environ = name;
+		i = -1;
+		while (name[++i])
+			g_environ[i] = ft_strdup(name[i]);
+		ft_freechar2(name);
 		g_environ[i] = ft_strjoinh(argv[1], argv[2]);
-		g_environ[i + 1] = 0;
-		//freename
-
 	}
 	return (1);
 }
@@ -51,10 +54,11 @@ static void ft_deline(char **env, int i)
 	char 	**name;
 	int		p;
 	int		size;
+	int 	j;
 
 	size = ft_strlend(env);
 	p = -1;
-	name = (char**)malloc(sizeof(char*) *(size));
+	name = (char**)malloc(sizeof(char*) * (size));
 	while (++p < i)
 		name[p] = g_environ[p];
 	while (p < size)
@@ -62,8 +66,12 @@ static void ft_deline(char **env, int i)
 		name[p] = g_environ[p + 1];
 		p++;
 	}
-	//freeg_environ;
-	g_environ = name;
+	ft_freechar2(g_environ);
+	g_environ = (char**)malloc(sizeof(char*) * (p));
+	j = -1;
+	while (name[++j])
+		g_environ[j] = ft_strdup(name[j]);
+	ft_freechar2(name);
 }
 
 int	ft_unsetenv(char **argv)
@@ -72,7 +80,7 @@ int	ft_unsetenv(char **argv)
 	char **name;
 
 	if (!(argv[1]))
-		ft_printf("Merci de preciser 1 parametre\n");
+		PRINTF("Merci de preciser 1 parametre\n");
 	else
 	{
 		i = -1;
@@ -82,10 +90,12 @@ int	ft_unsetenv(char **argv)
 			if (ft_strcmp(name[0], argv[1]) == 0)
 			{
 				ft_deline(g_environ, i);
+				ft_freechar2(name);
 				return (1);
 			}
 		}
-		ft_printf("%s not set\n", argv[1]);
+		ft_freechar2(name);
+		PRINTF("%s not set\n", argv[1]);
 	}
 	return (1);
 }

@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   realloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/23 22:08:35 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 16:04:06 by awyart           ###   ########.fr       */
+/*   Created: 2017/09/29 17:57:07 by awyart            #+#    #+#             */
+/*   Updated: 2017/09/30 17:55:39 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "header.h"
 
-/*typedef struct		s_envir
+/*char **ft_realloc(char **str, size_t len)
 {
-	char			*user;
-	char			*logname;
-	char			*home;
-	char			*lang;
-	char			*path;
-	char 			*pwd;
-}					t_envir;*/
+	char **tmp;
 
-typedef struct		s_func
-{
-	char			*cmd;
-	int				(*f)(char **argv);
-}					t_func;
-
-#endif
+	if (!(tmp = (char **)malloc(sizeof(char*) * (len + 1))))
+		return (NULL);
+	...
+}*/

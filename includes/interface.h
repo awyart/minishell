@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:30:37 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 15:20:28 by awyart           ###   ########.fr       */
+/*   Updated: 2017/09/29 16:11:16 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	ft_unsetenv(char **argv);
 
 t_func g_build[] = 
 {
-	{"cd",0, &ft_cd},
-	{"env",0, &ft_env},
-	{"setenv", 0, &ft_setenv},
-	{"exit", 0, &ft_exit},
-	{"echo", 0, &ft_echo},
-	{"unsetenv", 0, &ft_unsetenv}
+	{"cd", &ft_cd},
+	{"env", &ft_env},
+	{"setenv", &ft_setenv},
+	{"exit", &ft_exit},
+	{"echo", &ft_echo},
+	{"unsetenv", &ft_unsetenv}
 };
 
 #endif
