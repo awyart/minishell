@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 14:44:45 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 22:17:00 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 23:44:07 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void ft_launch(char *str, char **av)
 {
 	pid_t		father;
+	int ret;
 
 	father = fork();
 	if (father > 0)
@@ -23,8 +24,8 @@ void ft_launch(char *str, char **av)
 	}
 	if (father == 0)
 	{
-		execve(str, av, g_environ);
-		exit(0);
+		ret = execve(str, av, g_environ);
+		exit(ret);
 	}
 }
 

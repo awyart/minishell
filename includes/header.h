@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 13:37:22 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 17:10:21 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 22:59:02 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,14 @@
 #endif
 
 #define SIZEENV 6
-#define USER 16
-#define LOGNAME 18
-#define HOME 14
-#define PATH 11
-#define PWD 7
-#define LANG 6
+#define HOME "/Users/awyart"
 
 #include "struct.h"
 #include "proto.h"
 
 extern char		**environ;
 char 			**g_environ;
+char 			g_next[1024];
+char 			g_prec[1024];
 
 #endif

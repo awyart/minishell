@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 19:53:33 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 22:09:03 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 23:13:42 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void ft_freechar2(char **cmd)
 	int i;
 
 	i = -1;
-	while (cmd[++i] != NULL)
+	if (cmd && cmd[i + 1])
 	{
-		ft_strdel(&(cmd[i]));
-	}
-	if (cmd)
-	{
+		while (cmd[++i] != NULL)
+		{
+			ft_strdel(&(cmd[i]));
+		}
 		free(cmd);
 		cmd = NULL;
 	}

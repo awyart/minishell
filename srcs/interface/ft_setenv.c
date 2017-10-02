@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 19:57:38 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 22:35:26 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	ft_setenv(char **argv)
 		g_environ = (char**)malloc(sizeof(char*) * (i + 1));
 		i = -1;
 		while (name[++i])
-			g_environ[i] = ft_strdup(name[i]);
-		ft_freechar2(name);
+			g_environ[i] = name[i];
 		g_environ[i] = ft_strjoinh(argv[1], argv[2]);
 	}
 	return (1);
@@ -70,8 +69,7 @@ static void ft_deline(char **env, int i)
 	g_environ = (char**)malloc(sizeof(char*) * (p));
 	j = -1;
 	while (name[++j])
-		g_environ[j] = ft_strdup(name[j]);
-	ft_freechar2(name);
+		g_environ[j] = name[j];
 }
 
 int	ft_unsetenv(char **argv)

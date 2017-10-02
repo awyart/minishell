@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 22:09:38 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 16:11:10 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 23:27:23 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ char					*ft_strjoinh(char const *s1, char const *s2);
 int						ft_get_path(void);
 int						ft_get_pwd(void);
 void					ft_freechar2(char **cmd);
+void					ft_signal(int i);
 
 #endif

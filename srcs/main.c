@@ -6,12 +6,11 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 22:10:12 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 23:53:19 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
 
 void ft_init_env()
 {
@@ -24,6 +23,13 @@ void ft_init_env()
 	while (environ[++i] != NULL)
 	{
 		g_environ[i] = ft_strdup(environ[i]);
+	}
+	i = 0;
+	g_prec[0] = '$';
+	while (++i < 1024)
+	{
+		g_prec[i] = '\0';
+		g_next[i] = '\0';
 	}
 }
 
@@ -78,12 +84,17 @@ int main(void)
 	ft_init_env();
 	while (42)
 	{
-		PRINTF("$>");
+		getcwd(g_next, 1024);
+		PRINTF("\033[34m%s\033[33m > \033[0m", g_prec);
+		signal(SIGINT, &ft_signal);
 		get_next_line(1, &line);
 		cmd = ft_strsplit(line, ';');
 		ft_strdel(&line);
-		ret = ft_start(cmd);
-		ft_freechar2(cmd);
+		if (cmd)
+		{
+			ret = ft_start(cmd);
+			ft_freechar2(cmd);
+		}
 		if (ret == -1)
 			break ; 
 	}
