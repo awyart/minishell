@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 20:04:05 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 22:10:12 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int ft_start(char **cmd)
 	ret = 0;
 	while (cmd[++i])
 	{
-		argv = ft_strsplit(cmd[i], ' '); //faire un split un peu plus intelligent ici;
+		argv = ft_strsplit(cmd[i], ' ');
 		ret = ft_process(argv);
 		ft_freechar2(argv);
 		if (ret == -1)

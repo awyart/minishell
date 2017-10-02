@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 14:44:45 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 19:27:17 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/02 22:17:00 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void ft_launch(char *str, char **av)
 	if (father == 0)
 	{
 		execve(str, av, g_environ);
+		exit(0);
 	}
 }
 
@@ -48,6 +49,7 @@ int ft_apply_fct(char *str, char **av)
 	{
 		lgpath = ft_strjoin(str, av[0]);
 		ft_launch(lgpath, av);
+		ft_strdel(&lgpath);
 		return (1);
 	}
 }
