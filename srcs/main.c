@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 20:28:43 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 21:57:37 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,8 @@ void	ft_header(int ac, char **av)
 	system("clear");
 	ac = 3;
 	(void)av;
-	ft_printf("Bienvenue dans le\033[34mMinishell\033[0m");
-	ft_printf("d\'\033[32mAmaury\033[0m\n");
-}
-
-void	ft_init_env(char **environ)
-{
-	int i;
-	int size;
-
-	size = ft_strlend(environ);
-	i = -1;
-	g_environ = (char **)malloc(sizeof(char *) * (size + 1));
-	while (environ[++i] != NULL)
-	{
-		g_environ[i] = ft_strdup(environ[i]);
-	}
-	i = 0;
-	g_prec[0] = '$';
-	g_next[0] = '\0';
-	while (++i < 1024)
-	{
-		g_prec[i] = '\0';
-		g_next[i] = '\0';
-	}
+	ft_printf("Bienvenue dans le\033[34m Minishell\033[0m");
+	ft_printf(" d\'\033[32mAmaury\033[0m \n");
 }
 
 int		ft_process(char **argv)
@@ -91,12 +69,13 @@ int		main(int ac, char **av, char **environ)
 	char	*line;
 
 	ft_header(ac, av);
-	ft_init_env(environ);
+	ft_get_env(environ);
+	ret = 0;
 	while (1)
 	{
 		getcwd(g_next, 1024);
 		signal(SIGINT, &ft_signal);
-		PRINTF("\033[34m%s\033[33m > \033[0m", g_prec);
+		PRINTF("\033[34m%s\033[33m > \033[0m", g_next);
 		get_next_line(1, &line);
 		cmd = ft_strsplit(line, ';');
 		ft_strdel(&line);

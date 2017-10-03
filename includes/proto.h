@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 22:09:38 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 19:34:51 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 21:56:45 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int						ft_get_path(void);
 int						ft_get_pwd(void);
 void					ft_freechar2(char **cmd);
 void					ft_signal(int i);
+void					ft_get_env(char **environ);
 
 #endif
