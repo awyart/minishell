@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 23:25:09 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 21:49:54 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 22:28:57 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,15 @@ void	ft_signal(int sig)
 		ft_printf(" Vous avez cliqué sur Ctrl + C\n");
 		kill(1, sig);
 	}
-	else if (sig == SIGABRT)
+	else if (sig == SIGHUP)
 	{
-		ft_printf(" erreur ABORT\n");
-		kill(1, sig);
-	}
-	else if (sig == SIGSEGV)
-	{
-		ft_printf("erreur SEG\n");
-		kill(1, sig);
+		ft_printf("Vous avez cliqué sur Ctrl + D\n");
+		exit(0);
 	}
 	else
 	{
 		ft_printf("id du sig : %i\n", sig);
 		kill(1, sig);
 	}
-	PRINTF("\033[34m%s\033[33m > \033[0m", g_prec);
+	PRINTF("\033[34m%s\033[33m > \033[0m", g_next);
 }

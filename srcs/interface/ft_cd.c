@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:09:09 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 21:51:14 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 22:16:50 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ static void	ft_change_pwd(void)
 	int i;
 
 	i = ft_get_pwd();
-	ft_strdel(&(g_environ[i]));
-	g_environ[i] = ft_strjoinh("PWD", g_next);
+	if (i >= 0)
+	{
+		ft_strdel(&(g_environ[i]));
+		g_environ[i] = ft_strjoinh("PWD", g_next);
+	}
 }
 
 int			ft_cd(char **argv)

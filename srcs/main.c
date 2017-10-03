@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 21:57:37 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 22:25:11 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,26 @@ int		ft_start(char **cmd)
 
 int		main(int ac, char **av, char **environ)
 {
-	int		ret;
 	char	**cmd;
 	char	*line;
 
 	ft_header(ac, av);
 	ft_get_env(environ);
-	ret = 0;
+	g_ret = 0;
 	while (1)
 	{
-		getcwd(g_next, 1024);
 		signal(SIGINT, &ft_signal);
+		getcwd(g_next, 1024);
 		PRINTF("\033[34m%s\033[33m > \033[0m", g_next);
 		get_next_line(1, &line);
 		cmd = ft_strsplit(line, ';');
 		ft_strdel(&line);
 		if (cmd)
 		{
-			ret = ft_start(cmd);
+			g_ret = ft_start(cmd);
 			ft_freechar2(cmd);
 		}
-		if (ret == -1)
+		if (g_ret == -1)
 			break ;
 	}
 	ft_freechar2(g_environ);

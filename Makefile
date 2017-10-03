@@ -6,7 +6,7 @@
 #    By: awyart <awyart@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/20 13:23:55 by awyart            #+#    #+#              #
-#    Updated: 2017/10/02 23:03:36 by awyart           ###   ########.fr        #
+#    Updated: 2017/10/03 22:17:59 by awyart           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,5 +67,8 @@ fclean: clean
 	@make -C $(LIBFT_DIR)/ fclean
 
 re: fclean all
+
+do :
+	@$(CC) $(SRC) $(FLAG) $(LIB) -I $(IPATH) -o $(NAME)
 
 .PHONY: clean fclean re

@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 21:52:55 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 21:57:18 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 22:17:16 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_init_env(char **environ)
 {
-	int i;
-	int size;
+	int		i;
+	int		size;
 
 	size = ft_strlend(environ);
 	i = -1;
@@ -36,13 +36,14 @@ void	ft_init_env(char **environ)
 
 void 	ft_init_env_n(void)
 {
+	ft_printf("ENV VIDE CREE\n");
 	g_environ = (char **)malloc(sizeof(char *) * (1));
-	g_environ[0] = ft_strdup("\0");
+	g_environ[0] = NULL;
 }
 
 void	ft_get_env(char **environ)
 {
-	if (ft_strlend(environ) <= 0)
+	if (environ == NULL)
 		ft_init_env_n();
 	else
 		ft_init_env(environ);
