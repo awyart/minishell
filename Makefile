@@ -32,9 +32,16 @@ SRC2 = *.c \
 
 SRC3 = *.c\
 
+SRC4 = *.c\
+
+SRC5 = *.c\
+
 SRC = $(patsubst %,srcs/%,$(SRC1)) \
 		$(patsubst %,srcs/interface/%,$(SRC2)) \
 		$(patsubst %,srcs/env/%,$(SRC3)) \
+		$(patsubst %,srcs/utility/%,$(SRC4)) \
+		$(patsubst %,srcs/signal/%,$(SRC5))
+
 
 OBJ = $(patsubst %.c,%.o,$(SRC))
 
