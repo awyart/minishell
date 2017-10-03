@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 20:20:03 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 20:28:43 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_header(int ac, char **av)
 	system("clear");
 	ac = 3;
 	(void)av;
-	ft_printf("Bienvenue dans le
-		\033[34mMinishell\033[0m d'\033[32mAmaury\033[0m\n");
+	ft_printf("Bienvenue dans le\033[34mMinishell\033[0m");
+	ft_printf("d\'\033[32mAmaury\033[0m\n");
 }
 
 void	ft_init_env(char **environ)
