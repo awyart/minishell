@@ -6,13 +6,13 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:43:31 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 20:11:28 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 19:40:29 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int 		ft_exist(char *str, char *place)
+int		ft_exist(char *str, char *place)
 {
 	DIR				*dir;
 	struct dirent	*ret;
@@ -32,11 +32,11 @@ int 		ft_exist(char *str, char *place)
 	return (0);
 }
 
-char  		*ft_seekpath(char *str, char *path)
+char	*ft_seekpath(char *str, char *path)
 {
-	char 	**place;
+	char	**place;
 	int		i;
-	char 	*tmp;
+	char	*tmp;
 
 	i = 0;
 	place = ft_strsplit(path, ':');
@@ -54,7 +54,7 @@ char  		*ft_seekpath(char *str, char *path)
 	return (NULL);
 }
 
-char 		*ft_loadfunction(char **av, char *path)
+char	*ft_loadfunction(char **av, char *path)
 {
 	char *exe;
 

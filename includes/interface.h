@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:30:37 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 16:11:16 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 19:35:17 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int	ft_cd(char **argv);
 int	ft_echo(char **argv);
-int	ft_setenv( char **argv);
+int	ft_setenv(char **argv);
 int	ft_env(char **argv);
 int	ft_exit(char **argv);
 int	ft_unsetenv(char **argv);
 
-t_func g_build[] = 
+t_func g_build[] =
 {
 	{"cd", &ft_cd},
 	{"env", &ft_env},

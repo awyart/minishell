@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 11:09:44 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/27 18:05:51 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 20:22:48 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <string.h>
 # include <unistd.h>
 
-#ifndef BUFF_SIZE
-# define BUFF_SIZE 1000
-#endif
+# ifndef BUFF_SIZE
+#  define BUFF_SIZE 1000
+# endif
 
 typedef struct		s_list
 {
@@ -57,6 +57,7 @@ int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+void				ft_freechar2(char **cmd);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *str, int c);
 void				*ft_memset(void *b, int c, size_t len);

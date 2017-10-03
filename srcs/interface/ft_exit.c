@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:49 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 16:15:23 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 19:25:25 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 int	ft_exit(char **argv)
 {
 	PRINTF("%s loaded\n", argv[0]);
+	system("clear");
 	return (-1);
 }

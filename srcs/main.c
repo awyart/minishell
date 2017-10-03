@@ -6,13 +6,22 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 23:53:19 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 20:20:03 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void ft_init_env()
+void	ft_header(int ac, char **av)
+{
+	system("clear");
+	ac = 3;
+	(void)av;
+	ft_printf("Bienvenue dans le
+		\033[34mMinishell\033[0m d'\033[32mAmaury\033[0m\n");
+}
+
+void	ft_init_env(char **environ)
 {
 	int i;
 	int size;
@@ -26,6 +35,7 @@ void ft_init_env()
 	}
 	i = 0;
 	g_prec[0] = '$';
+	g_next[0] = '\0';
 	while (++i < 1024)
 	{
 		g_prec[i] = '\0';
@@ -33,11 +43,11 @@ void ft_init_env()
 	}
 }
 
-int ft_process(char **argv)
+int		ft_process(char **argv)
 {
-	int ret;
-	int ipath;
-	char *tmp;
+	int		ret;
+	int		ipath;
+	char	*tmp;
 
 	ipath = ft_get_path();
 	if ((ret = ft_apply_bi(argv)) != 0)
@@ -53,14 +63,13 @@ int ft_process(char **argv)
 	}
 	PRINTF("awsh: command not found: %s\n", argv[0]);
 	return (0);
-
 }
 
-int ft_start(char **cmd)
+int		ft_start(char **cmd)
 {
-	int i;
-	int ret;
-	char **argv;
+	int		i;
+	int		ret;
+	char	**argv;
 
 	i = -1;
 	ret = 0;
@@ -75,18 +84,19 @@ int ft_start(char **cmd)
 	return (ret);
 }
 
-int main(void)
+int		main(int ac, char **av, char **environ)
 {
-	int ret;
-	char **cmd;
-	char *line;
+	int		ret;
+	char	**cmd;
+	char	*line;
 
-	ft_init_env();
-	while (42)
+	ft_header(ac, av);
+	ft_init_env(environ);
+	while (1)
 	{
 		getcwd(g_next, 1024);
-		PRINTF("\033[34m%s\033[33m > \033[0m", g_prec);
 		signal(SIGINT, &ft_signal);
+		PRINTF("\033[34m%s\033[33m > \033[0m", g_prec);
 		get_next_line(1, &line);
 		cmd = ft_strsplit(line, ';');
 		ft_strdel(&line);
@@ -96,7 +106,7 @@ int main(void)
 			ft_freechar2(cmd);
 		}
 		if (ret == -1)
-			break ; 
+			break ;
 	}
 	ft_freechar2(g_environ);
 	return (0);

@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   realloc.c                                          :+:      :+:    :+:   */
+/*   ft_freechar2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/29 17:57:07 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/30 17:55:39 by awyart           ###   ########.fr       */
+/*   Created: 2017/10/03 20:15:17 by awyart            #+#    #+#             */
+/*   Updated: 2017/10/03 20:22:35 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-/*char **ft_realloc(char **str, size_t len)
+void	ft_freechar2(char **cmd)
 {
-	char **tmp;
+	int i;
 
-	if (!(tmp = (char **)malloc(sizeof(char*) * (len + 1))))
-		return (NULL);
-	...
-}*/
+	i = -1;
+	if (cmd && cmd[i + 1])
+	{
+		while (cmd[++i] != NULL)
+		{
+			ft_strdel(&(cmd[i]));
+		}
+		free(cmd);
+		cmd = NULL;
+	}
+}

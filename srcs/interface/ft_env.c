@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:38 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 16:15:16 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 19:39:55 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ int	ft_env(char **argv)
 {
 	int i;
 
-	i = 0;
-	while (g_environ[i] != NULL)
-	{
+	i = -1;
+	while (g_environ[++i])
 		PRINTF("%s\n", g_environ[i]);
-		i++;
-	}
 	(void)argv;
 	return (1);
 }

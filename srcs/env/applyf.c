@@ -6,16 +6,16 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 14:44:45 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 23:44:07 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 20:13:46 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void ft_launch(char *str, char **av)
+void	ft_launch(char *str, char **av)
 {
 	pid_t		father;
-	int ret;
+	int			ret;
 
 	father = fork();
 	if (father > 0)
@@ -29,7 +29,7 @@ void ft_launch(char *str, char **av)
 	}
 }
 
-int ft_apply_fct0(char *str, char **av)
+int		ft_apply_fct0(char *str, char **av)
 {
 	if (access(str, X_OK) == -1)
 		return (0);
@@ -40,7 +40,7 @@ int ft_apply_fct0(char *str, char **av)
 	}
 }
 
-int ft_apply_fct(char *str, char **av)
+int		ft_apply_fct(char *str, char **av)
 {
 	char *lgpath;
 

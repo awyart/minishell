@@ -6,13 +6,13 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:09:09 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 23:02:29 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 19:39:43 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static void ft_change_pwd()
+static void	ft_change_pwd(void)
 {
 	int i;
 
@@ -21,11 +21,11 @@ static void ft_change_pwd()
 	g_environ[i] = ft_strjoinh("PWD", g_next);
 }
 
-int		ft_cd(char **argv)
+int			ft_cd(char **argv)
 {
 	if (argv[2] != NULL)
 		PRINTF("Ne placer qu'un seul argument\n");
-	else 
+	else
 	{
 		if (strcmp(argv[1], "-") == 0)
 			ft_strcpy(argv[1], g_prec);

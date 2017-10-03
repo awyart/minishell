@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 18:29:42 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/21 11:22:01 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/03 19:38:05 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,4 @@ char	*ft_strnew(size_t size)
 		return (0);
 	str[size] = 0;
 	return (str);
-
 }

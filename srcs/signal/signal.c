@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/02 19:53:33 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/02 23:13:42 by awyart           ###   ########.fr       */
+/*   Created: 2017/10/02 23:25:09 by awyart            #+#    #+#             */
+/*   Updated: 2017/10/03 20:14:34 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void ft_freechar2(char **cmd)
+void	ft_signal(int sig)
 {
-	int i;
-
-	i = -1;
-	if (cmd && cmd[i + 1])
+	if (sig == SIGINT)
 	{
-		while (cmd[++i] != NULL)
-		{
-			ft_strdel(&(cmd[i]));
-		}
-		free(cmd);
-		cmd = NULL;
+		ft_printf(" Vous avez cliqué sur Ctrl + C\n");
+		kill(1, sig);
 	}
+	else if (sig == SIGABRT)
+	{
+		ft_printf(" erreur ABORT\n");
+		kill(1, sig);
+	}
+	else if (sig == SIGSEGV)
+	{
+		ft_printf("erreur SEG\n");
+		kill(1, sig);
+	}
+	else
+	{
+		ft_printf("id du sig : %i\n", sig);
+		kill(1, sig);
+	}
+	PRINTF("\033[34m%s\033[33m > \033[0m", g_prec);
 }
