@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 13:37:22 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 19:33:58 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/04 18:41:58 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <signal.h>
 
 # define PRINTF ft_printf
+# define DPRINTF ft_printf
 
 # ifndef BUFF_SIZE
 #  define BUFF_SIZE 1000

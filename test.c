@@ -1,29 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/23 22:08:35 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 21:05:22 by awyart           ###   ########.fr       */
+/*   Created: 2017/10/04 20:16:08 by awyart            #+#    #+#             */
+/*   Updated: 2017/10/04 21:09:32 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include <unistd.h>
+#include <stdlib.h>
 
-char				**g_environ;
-char				g_next[1024];
-char				g_prec[1024];
-int					g_ret;
-int					g_shlvl;
-int					g_i;
-
-typedef struct		s_func
+char	ftabort(void)
 {
-	char			*cmd;
-	int				(*f)(char **argv);
-}					t_func;
+	char tmp[12];
 
-#endif
+	return ((tmp[13] = 'i'));
+}
+
+void	buserror(void)
+{
+	char *tmp = "coucou";
+
+	tmp[2] = 'd';
+}
+
+void	segfault(void)
+{
+	char *tmp;
+
+	tmp = NULL;
+	tmp[6] = 'i';
+}
+
+int		main(void)
+{
+	char c;
+
+	buserror();
+	c = ftabort();
+	segfault();
+	return (0);
+}

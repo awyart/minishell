@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/23 22:08:35 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 21:05:22 by awyart           ###   ########.fr       */
+/*   Created: 2017/10/04 18:50:47 by awyart            #+#    #+#             */
+/*   Updated: 2017/10/04 20:20:40 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "header.h"
 
-char				**g_environ;
-char				g_next[1024];
-char				g_prec[1024];
-int					g_ret;
-int					g_shlvl;
-int					g_i;
-
-typedef struct		s_func
+void	ft_header(int ac, char **av)
 {
-	char			*cmd;
-	int				(*f)(char **argv);
-}					t_func;
+	write(1, "\e[1;1H\e[2J", 11);
+	ac = 3;
+	(void)av;
+	PRINTF("Bienvenue dans le\033[34m Minishell\033[0m");
+	PRINTF(" d'\033[32mAmaury\033[0m\n");
+}
 
-#endif
+void	ft_doprompt(void)
+{
+	PRINTF("\033[34m%s\033[33m > \033[0m", g_next);
+}

@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 21:52:55 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 17:38:30 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/04 21:08:58 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,25 @@ void	ft_init_env(char **environ)
 	while (environ[++i] != NULL)
 	{
 		if (strncmp(environ[i], "SHLVL=", 6) == 0)
-			g_environ[i] = ft_strjoinc("SHLVL=",environ[i][6] + 1);
+		{
+			g_i = (int)(environ[i][6] - 48) + 1;
+			g_environ[i] = ft_strjoinc("SHLVL=", g_i + 48);
+		}
 		else
+		{
 			g_environ[i] = ft_strdup(environ[i]);
+		}
 	}
-	i = 0;
-	g_prec[0] = '$';
-	g_next[0] = '\0';
+	i = -1;
 	while (++i < 1024)
 	{
 		g_prec[i] = '\0';
 		g_next[i] = '\0';
 	}
+	g_shlvl = g_i;
 }
 
-void 	ft_init_env_n(void)
+void	ft_init_env_n(void)
 {
 	g_environ = (char **)ft_memalloc(sizeof(char *) * (1));
 	g_environ[0] = NULL;

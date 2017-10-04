@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 14:44:45 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 18:21:57 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/04 21:06:49 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,29 @@
 void	ft_launch(char *str, char **av)
 {
 	pid_t		father;
-	int 		ret = 0;
+	int			ret;
+	int			status;
 
 	father = fork();
+	ret = 0;
+	g_i++;
 	if (father > 0)
 	{
-		wait(0);
-		if (ret < 0)
-			PRINTF("OKFEOJKFOENF");
+		if ((waitpid(ret, &status, 0)) == -1)
+			exit(0);
+		if ((WIFSIGNALED(status)))
+		{
+			PRINTF("le process s'est terminé anormalement :\n");
+			ft_signal(WTERMSIG(status));
+		}
 	}
 	if (father == 0)
 	{
 		ret = execve(str, av, g_environ);
+		PRINTF("exec failed\n");
 		exit(ret);
 	}
+	g_i--;
 }
 
 int		ft_apply_fct0(char *str, char **av)

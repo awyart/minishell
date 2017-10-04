@@ -6,20 +6,11 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 17:43:57 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/04 21:08:53 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-void	ft_header(int ac, char **av)
-{
-	write(1, "\e[1;1H\e[2J", 11);
-	ac = 3;
-	(void)av;
-	ft_printf("Bienvenue dans le\033[34m Minishell\033[0m");
-	ft_printf(" d\'\033[32mAmaury\033[0m \n");
-}
 
 int		ft_process(char **argv)
 {
@@ -53,7 +44,7 @@ int		ft_start(char **cmd)
 	ret = 0;
 	while (cmd[++i])
 	{
-		argv = ft_strsplit(cmd[i], ' ');
+		argv = ft_split_whitespaces(cmd[i]);
 		ret = ft_process(argv);
 		ft_freechar2(argv);
 		if (ret == -1)
@@ -62,7 +53,7 @@ int		ft_start(char **cmd)
 	return (ret);
 }
 
-void ft_boucle(void)
+void	ft_boucle(void)
 {
 	char	**cmd;
 	char	*line;
@@ -70,7 +61,7 @@ void ft_boucle(void)
 	while (1)
 	{
 		getcwd(g_next, 1024);
-		PRINTF("\033[34m%s\033[33m > \033[0m", g_next);
+		ft_doprompt();
 		get_next_line(1, &line);
 		cmd = ft_strsplit(line, ';');
 		ft_strdel(&line);
@@ -86,6 +77,7 @@ void ft_boucle(void)
 
 int		main(int ac, char **av, char **environ)
 {
+	g_i = 2;
 	ft_header(ac, av);
 	setlocale(LC_ALL, "");
 	ft_get_env(environ);

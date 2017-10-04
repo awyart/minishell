@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 11:09:44 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 20:22:48 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/04 19:58:36 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+char				**ft_split_whitespaces(char *str);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					get_next_line(const int fd, char **line);
 size_t				ft_strlend(char **s);
