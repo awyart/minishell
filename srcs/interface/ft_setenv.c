@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 22:03:48 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/04 15:43:43 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static int		ft_realloc(int i, char **name)
 	int		j;
 
 	j = -1;
-	name = (char**)malloc(sizeof(char*) * (i + 2));
+	name = (char**)ft_memalloc(sizeof(char*) * (i + 2));
 	while (g_environ[++j])
 		name[j] = ft_strdup(g_environ[j]);
 	name[j] = NULL;
 	ft_freechar2(g_environ);
-	g_environ = (char**)malloc(sizeof(char*) * (i + 2));
+	g_environ = (char**)ft_memalloc(sizeof(char*) * (i + 2));
 	j = -1;
 	while (name[++j])
 		g_environ[j] = ft_strdup(name[j]);
@@ -67,7 +67,7 @@ static void		ft_deline(int i)
 
 	size = ft_strlend(g_environ);
 	p = -1;
-	name = (char**)malloc(sizeof(char*) * (size + 1));
+	name = (char**)ft_memalloc(sizeof(char*) * (size + 1));
 	while (++p < i)
 		name[p] = ft_strdup(g_environ[p]);
 	while (p < size - 1)
@@ -77,7 +77,7 @@ static void		ft_deline(int i)
 	}
 	name[p] = NULL;
 	ft_freechar2(g_environ);
-	g_environ = (char**)malloc(sizeof(char*) * (size + 1));
+	g_environ = (char**)ft_memalloc(sizeof(char*) * (size + 1));
 	j = -1;
 	while (name[++j])
 		g_environ[j] = ft_strdup(name[j]);

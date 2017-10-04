@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:49 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 19:25:25 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/04 17:44:31 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_exit(char **argv)
 {
 	PRINTF("%s loaded\n", argv[0]);
-	system("clear");
+ 	write(1, "\e[1;1H\e[2J", 11);
 	return (-1);
 }
