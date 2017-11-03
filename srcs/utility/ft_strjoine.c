@@ -6,69 +6,69 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:15:26 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 15:45:01 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 21:08:58 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-char	*ft_strjoinh(char const *s1, char const *s2)
+char	*ft_strjoinh(char *s1, char *s2)
 {
-	int		total_len;
-	char	*tmp;
+	char	*str;
+	char	*ptr;
 	int		i;
+	int		j;
 
 	i = 0;
-	total_len = ft_strlen(s1) + ft_strlen(s2);
-	if ((tmp = (char *)ft_memalloc(sizeof(char) * (total_len + 3))) == NULL)
-		return (0);
-	tmp[total_len] = '\0';
-	while (*s1)
-		tmp[i++] = *s1++;
-	tmp[i] = '=';
-	i++;
-	while (*s2)
-		tmp[i++] = *s2++;
-	tmp[i] = '\0';
-	return (tmp);
+	j = 0;
+	str = NULL;
+	str = (char *)ft_memalloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (str == NULL)
+		return (NULL);
+	ptr = str;
+	while (s1[i])
+		*ptr++ = s1[i++];
+	*ptr++ = '=';
+	while (s2[j])
+		*ptr++ = s2[j++];
+	*ptr++ = '\0';
+	return (str);
 }
 
-char	*ft_strjoinp(char const *s1, char const *s2)
+char	*ft_strjoinp(char *s1, char *s2)
 {
-	int		total_len;
-	char	*tmp;
+	char	*str;
+	char	*ptr;
 	int		i;
+	int		j;
 
 	i = 0;
-	total_len = ft_strlen(s1) + ft_strlen(s2);
-	if ((tmp = (char *)ft_memalloc(sizeof(char) * (total_len + 3))) == NULL)
-		return (0);
-	tmp[total_len] = '\0';
-	while (*s1)
-		tmp[i++] = *s1++;
-	tmp[i] = '/';
-	i++;
-	while (*s2)
-		tmp[i++] = *s2++;
-	tmp[i] = '\0';
-	return (tmp);
+	j = 0;
+	if ((str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)) == NULL)
+		return (NULL);
+	ptr = str;
+	while (s1[i])
+		*ptr++ = s1[i++];
+	*ptr++ = '/';
+	while (s2[j])
+		*ptr++ = s2[j++];
+	*ptr++ = '\0';
+	return (str);
 }
 
-char	*ft_strjoinc(char const *s1, char s2)
+char	*ft_strjoinc(char *s1, char s2)
 {
-	int		total_len;
-	char	*tmp;
+	char	*str;
+	char	*ptr;
 	int		i;
 
 	i = 0;
-	total_len = ft_strlen(s1) + 1;
-	if ((tmp = (char *)ft_memalloc(sizeof(char) * (total_len + 2))) == NULL)
-		return (0);
-	tmp[total_len] = '\0';
-	while (*s1)
-		tmp[i++] = *s1++;
-	tmp[i] = s2;
-	i++;
-	tmp[i] = '\0';
-	return (tmp);
+	if ((str = (char *)malloc(ft_strlen(s1) + 2)) == NULL)
+		return (NULL);
+	ptr = str;
+	while (s1[i])
+		*ptr++ = s1[i++];
+	*ptr++ = s2;
+	*ptr++ = '\0';
+	return (str);
 }

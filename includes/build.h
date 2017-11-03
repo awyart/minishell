@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   build.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/04 18:50:47 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/05 21:04:51 by awyart           ###   ########.fr       */
+/*   Created: 2017/10/05 18:10:48 by awyart            #+#    #+#             */
+/*   Updated: 2017/10/05 21:38:06 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef BUILD_H
+# define BUILD_H
 
-void	ft_header(int ac, char **av)
-{
-	write(1, "\e[1;1H\e[2J", 11);
-	ac = 3;
-	av[0][2] = 'm';
-	PRINTF("Bienvenue dans le\033[34m Minishell\033[0m");
-	PRINTF(" d'\033[32mAmaury\033[0m\n");
-}
+# include "interface.h"
 
-void	ft_doprompt(void)
+typedef struct s_func	t_func;
+
+t_func g_build[] =
 {
-	PRINTF("\033[34m%s\033[33m > \033[0m", g_next);
-}
+	{"cd", &ft_cd},
+	{"env", &ft_env},
+	{"setenv", &ft_setenv},
+	{"exit", &ft_exit},
+	{"echo", &ft_echo},
+	{"unsetenv", &ft_unsetenv}
+};
+
+#endif

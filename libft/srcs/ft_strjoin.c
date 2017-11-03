@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:15:26 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/21 11:21:47 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 20:37:13 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		total_len;
-	char	*tmp;
+	char	*str;
+	char	*ptr;
 	int		i;
+	int		j;
 
 	i = 0;
-	total_len = ft_strlen(s1) + ft_strlen(s2);
-	if ((tmp = (char *)malloc(sizeof(char) * (total_len + 1))) == NULL)
-		return (0);
-	tmp[total_len] = '\0';
-	while (*s1)
-		tmp[i++] = *s1++;
-	while (*s2)
-		tmp[i++] = *s2++;
-	return (tmp);
+	j = 0;
+	if ((str = (char *)ft_memalloc(ft_strlen(s1) + ft_strlen(s2))) == NULL)
+		return (NULL);
+	ptr = str;
+	while (s1[i])
+		*ptr++ = s1[i++];
+	while (s2[j])
+		*ptr++ = s2[j++];
+	*ptr++ = '\0';
+	return (str);
 }

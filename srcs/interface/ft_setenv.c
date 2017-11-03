@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:29:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 15:43:43 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 20:57:09 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_realloc(int i, char **name)
 	int		j;
 
 	j = -1;
-	name = (char**)ft_memalloc(sizeof(char*) * (i + 2));
+	name = (char**)ft_memalloc(sizeof(char*) * (i + 1));
 	while (g_environ[++j])
 		name[j] = ft_strdup(g_environ[j]);
 	name[j] = NULL;

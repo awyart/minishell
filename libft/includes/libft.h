@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 11:09:44 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 19:58:36 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 17:36:51 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,15 @@
 # include <unistd.h>
 
 # ifndef BUFF_SIZE
-#  define BUFF_SIZE 1000
+#  define BUFF_SIZE 1024
 # endif
+
+# define END_FILE 0
+# define FAILURE -1
+# define FOUND_SOMETHING 1
+# define FOUND_LINE 1
+
+# define MAL_ERR_GNL -1221
 
 typedef struct		s_list
 {
@@ -26,16 +33,6 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
-typedef struct		s_gnl
-{
-	char			*tmp;
-	char			*s;
-	int				fd;
-	struct s_gnl	*head;
-	struct s_gnl	*next;
-	struct s_gnl	*last;
-}					t_gnl;
 
 size_t				ft_strlen(const char *s);
 int					ft_strcmp(const char *s1, const char *s2);
@@ -99,7 +96,7 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 char				**ft_split_whitespaces(char *str);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-int					get_next_line(const int fd, char **line);
+int					get_next_line(int const fd, char **line, char **rem);
 size_t				ft_strlend(char **s);
 
 #endif

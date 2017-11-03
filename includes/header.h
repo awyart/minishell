@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 13:37:22 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 18:41:58 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 17:42:20 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define DPRINTF ft_printf
 
 # ifndef BUFF_SIZE
-#  define BUFF_SIZE 1000
+#  define BUFF_SIZE 1024
 # endif
 
 # define SIZEENV 6

@@ -6,7 +6,7 @@
 #    By: awyart <awyart@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/20 13:23:55 by awyart            #+#    #+#              #
-#    Updated: 2017/10/03 22:17:59 by awyart           ###   ########.fr        #
+#    Updated: 2017/10/04 21:15:46 by awyart           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,24 @@ PRINTF_LIB = libft/ft_printf/libftprintf.a
 LIB = $(LIBFT_DIR)/$(LIBFT_LIB) \
 	$(PRINTF_LIB)
 
-SRC1 = *.c \
+SRC1 = main.c \
+		prompt.c
 
-SRC2 = *.c \
+SRC2 = ft_cd.c \
+		ft_echo.c \
+		ft_env.c \
+		ft_exit.c \
+		ft_setenv.c\
+		loadfunction.c
 
-SRC3 = *.c\
+SRC3 = applyf.c \
+		getenv.c \
+		loadbuild.c
 
-SRC4 = *.c\
+SRC4 = ft_get_path.c \
+		ft_strjoine.c
 
-SRC5 = *.c\
+SRC5 = signal.c\
 
 SRC = $(patsubst %,srcs/%,$(SRC1)) \
 		$(patsubst %,srcs/interface/%,$(SRC2)) \
@@ -50,7 +59,6 @@ IPATH = includes
 all: $(NAME)
 
 $(NAME): $(SRC) 
-	@echo "$(FLAG)"
 	@make -C $(LIBFT_DIR)/
 	@echo "Compilation libft:\033[92m OK\033[0m"
 	@$(CC) $(SRC) $(FLAG) $(LIB) -I $(IPATH) -o $(NAME)

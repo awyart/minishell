@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 22:08:35 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 21:05:22 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 19:13:22 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define STRUCT_H
 
 char				**g_environ;
-char				g_next[1024];
-char				g_prec[1024];
+char				g_next[BUFF_SIZE];
+char				g_prec[BUFF_SIZE];
 int					g_ret;
 int					g_shlvl;
 int					g_i;

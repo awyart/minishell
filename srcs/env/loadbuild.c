@@ -6,12 +6,13 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 14:06:19 by awyart            #+#    #+#             */
-/*   Updated: 2017/09/29 15:20:07 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 18:16:29 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "interface.h"
+#include "build.h"
 
 int		ft_apply_bi(char **av)
 {

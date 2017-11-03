@@ -3,80 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awyart <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 20:16:59 by awyart            #+#    #+#             */
-/*   Updated: 2017/04/12 20:17:00 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 20:46:22 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_words(char const *s, char c)
+static int		nb_word(char const *s, char c)
 {
-	size_t	i;
-	size_t	pos;
-	size_t	count;
+	int i;
+	int count;
 
 	i = 0;
-	pos = 0;
 	count = 0;
-	while (s[i] != '\0')
+	while (s[i] == c)
+		i++;
+	while (s[i])
 	{
-		if (s[i] == c)
-		{
-			if (i - pos > 0)
-				count++;
-			pos = i + 1;
-		}
+		if (s[i] != c)
+			count++;
+		while ((s[i] != c) && s[i])
+			i++;
+		if (!s[i])
+			break ;
 		i++;
 	}
-	if (i - pos > 0)
-		count++;
 	return (count);
 }
 
-static char		*ft_create_word(char const *s, int end, int pos)
+static int		word_len(char const *str, char c)
 {
-	char	*str;
-	int		i;
+	int len;
 
-	i = 0;
-	str = (char*)malloc(sizeof(*str) * (end - pos + 1));
-	while (i < end - pos)
-	{
-		str[i] = s[pos + i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	len = 0;
+	while (str[len] != c && str[len])
+		len++;
+	return (len);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
-	char	**str;
-	size_t	words;
-	size_t	i;
-	size_t	pos;
-	size_t	j;
+	char	**tab;
+	int		i;
+	int		j;
+	int		jc;
+	int		word;
 
-	if (s == NULL)
-		return (NULL);
-	words = ft_words(s, c);
-	i = -1;
-	pos = 0;
+	i = 0;
 	j = 0;
-	if (!(str = (char**)malloc(sizeof(char*) * (words + 1))))
-		return (0);
-	while (s[++i] != '\0')
-		if (s[i] == c)
-		{
-			if (i - pos > 0)
-				str[j++] = ft_create_word(s, i, pos);
-			pos = i + 1;
-		}
-	if (i - pos > 0)
-		str[j++] = ft_create_word(s, i, pos);
-	str[j] = 0;
-	return (str);
+	word = nb_word(s, c);
+	if (!(tab = (char **)malloc(sizeof(char *) * (word + 1))))
+		return (NULL);
+	while (word)
+	{
+		jc = 0;
+		while (s[i] == c)
+			i++;
+		tab[j] = (char *)malloc(sizeof(char *) * ((word_len(s + i, c) + 1)));
+		while ((s[i] != c) && s[i])
+			tab[j][jc++] = s[i++];
+		tab[j][jc] = '\0';
+		j++;
+		word--;
+	}
+	tab[j] = 0;
+	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/13 16:33:44 by narajaon          #+#    #+#             */
-/*   Updated: 2017/09/21 13:09:32 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 17:42:10 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # include <wchar.h>
 # include <locale.h>
 
-# define BUFF_SIZE 1000
+# ifndef BUFF_SIZE
+#  define BUFF_SIZE 1024
+# endif
 
 # define Z 1
 # define H 2

@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:43:31 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/03 19:40:29 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/05 20:56:08 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_seekpath(char *str, char *path)
 	{
 		if (ft_exist(str, place[i]))
 		{
-			tmp = ft_strjoin(place[i], "/");
+			tmp = ft_strjoinc(place[i], '/');
 			ft_freechar2(place);
 			return (tmp);
 		}

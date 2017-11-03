@@ -29,7 +29,7 @@ size_t	ft_strlend(char **s)
 	int size;
 
 	size = 0;
-	while (s[size])
+	while (s[size] != NULL)
 	{
 		size++;
 	}

@@ -6,7 +6,7 @@
 /*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 11:28:41 by awyart            #+#    #+#             */
-/*   Updated: 2017/10/04 21:08:53 by awyart           ###   ########.fr       */
+/*   Updated: 2017/10/06 18:15:24 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_process(char **argv)
 {
 	int		ret;
 	int		ipath;
-	char	*tmp;
+	char	*mpa;
 
 	ipath = ft_get_path();
 	if ((ret = ft_apply_bi(argv)) != 0)
@@ -24,10 +24,10 @@ int		ft_process(char **argv)
 	if ((ret = ft_apply_fct0(argv[0], argv)) != 0)
 		return (ret);
 	if (((ipath >= 0 &&
-			(tmp = ft_loadfunction(argv, g_environ[ipath])) != NULL)))
+			(mpa = ft_loadfunction(argv, g_environ[ipath])) != NULL)))
 	{
-		ret = ft_apply_fct(tmp, argv);
-		ft_strdel(&tmp);
+		ret = ft_apply_fct(mpa, argv);
+		ft_strdel(&mpa);
 		return (ret);
 	}
 	PRINTF("awsh: command not found: %s\n", argv[0]);
@@ -45,7 +45,8 @@ int		ft_start(char **cmd)
 	while (cmd[++i])
 	{
 		argv = ft_split_whitespaces(cmd[i]);
-		ret = ft_process(argv);
+		if (argv[0] != NULL)
+			ret = ft_process(argv);
 		ft_freechar2(argv);
 		if (ret == -1)
 			break ;
@@ -57,15 +58,18 @@ void	ft_boucle(void)
 {
 	char	**cmd;
 	char	*line;
+	char	*rem;
 
+	line = NULL;
+	rem = NULL;
 	while (1)
 	{
-		getcwd(g_next, 1024);
+		getcwd(g_next, BUFF_SIZE);
 		ft_doprompt();
-		get_next_line(1, &line);
+		get_next_line(0, &line, &rem);
 		cmd = ft_strsplit(line, ';');
 		ft_strdel(&line);
-		if (cmd)
+		if (cmd != NULL)
 		{
 			g_ret = ft_start(cmd);
 			ft_freechar2(cmd);
@@ -73,14 +77,22 @@ void	ft_boucle(void)
 		if (g_ret == -1)
 			break ;
 	}
+	ft_strdel(&rem);
 }
 
 int		main(int ac, char **av, char **environ)
 {
-	g_i = 2;
 	ft_header(ac, av);
+	g_i = 2;
 	setlocale(LC_ALL, "");
-	ft_get_env(environ);
+	if (ft_get_env(environ) == 0)
+	{
+		PRINTF("faux depart, malloc environnement echoué\n");
+		return (0);
+	}
+	g_shlvl = g_i;
+	getcwd(g_next, BUFF_SIZE);
+	getcwd(g_prec, BUFF_SIZE);
 	ft_getsignal();
 	g_ret = 0;
 	ft_boucle();
